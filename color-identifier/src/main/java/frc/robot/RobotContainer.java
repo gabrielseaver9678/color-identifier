@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.GetColor;
+import frc.robot.subsystems.ColorSystem;
 import frc.robot.Constants;
 
 /**
@@ -24,23 +26,23 @@ import frc.robot.Constants;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  private Command getColor;
+  private ColorSystem colorSystem; 
 
   private Joystick controllerZero;
 
-  private JoystickButton getColorButton;
+  private Button getColorButton;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    getColor = new GetColor();
     
+    colorSystem = new ColorSystem(); 
     controllerZero = new Joystick(0);
-    getColorButton = new JoystickButton(controllerZero, Constants.getColorButtonID);
-
+    getColorButton = new JoystickButton(controllerZero, 1);
     // Configure the button bindings
     configureButtonBindings();
+    
   }
 
   /**
@@ -50,7 +52,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    getColorButton.whenActive(getColor);
+    getColorButton.whenHeld(new GetColor(colorSystem)); 
+    
   }
 
 

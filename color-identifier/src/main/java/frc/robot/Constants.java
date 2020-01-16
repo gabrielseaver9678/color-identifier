@@ -16,9 +16,9 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
+    
     // M A P
 
-    public static final int getColorButtonID = 0;
+    
 
 }

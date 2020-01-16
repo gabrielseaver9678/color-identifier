@@ -22,11 +22,8 @@ public class ColorSystem extends SubsystemBase {
   }
 
   public Color getColor() {
-    
     colorDetected = colorSensor.getColor();
-
     return colorDetected;
-
   }
 
   @Override
